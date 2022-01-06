@@ -15,7 +15,8 @@
     },
     "permissions": [
         "tabs",
-        "*://*.youtube.com/*"
+        "*://*.youtube.com/*",
+        "storage"
     ],
     "content_scripts": [
         {

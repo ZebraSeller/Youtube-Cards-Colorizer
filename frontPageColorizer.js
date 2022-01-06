@@ -1,6 +1,16 @@
 console.log("FrontPageColorizer Injected");
 var cards; //array storing all front page cards.
 var numCards, currNum;
+var highlightColor = "red";
+chrome.runtime.onMessage.addListener(
+    function(msg, sender, sendResponse) {
+        switch(msg.type) {
+            case "sendingColor":
+                highlightColor = msg.content;
+            break;
+        }
+    }
+);
 
 const target = document.getElementById("contents");
 const config = { attributes: true, childList: true, subtree: true };
@@ -9,7 +19,10 @@ const updateCards = function() {
     console.log("Cards updated, new length " + cards.length);
     numCards = cards.length;
     if (numCards != currNum) {// when the number of videos in the feed changes.
-        for (const card of cards) detectViews(card, "900K views");
+        for (const card of cards) {
+            if(checkViews(card, "900K views")) changeBackgroundColor(card, "hsl(10,50%,50%)", "8px");
+            else changeBackgroundColor(card, "", "");
+        }
         currNum = numCards;
     }  
 };
@@ -21,9 +34,9 @@ observer.observe(target, config);
  * Detects if a video has enough views, and changes its background color if it does have enough views.
  * @param {Element} card the card of the video.
  * @param {string} requiredViews the amount of views required in a format similar to "4K views" or "1400 views".
- * @returns nothing.
+ * @returns boolean.
  */
-function detectViews(card, requiredViews) {
+function checkViews(card, requiredViews) {
     var metaDataLine = card.querySelectorAll("#metadata-line");
     if (metaDataLine.length == 0) return; //if null, return.
     var viewSpans = metaDataLine[0].getElementsByClassName("style-scope ytd-video-meta-block");
@@ -33,12 +46,12 @@ function detectViews(card, requiredViews) {
     var requirementNum = viewStringToNumber(requiredViews);
     console.log("this video has " + viewNum + " views, required views is " + requirementNum);
     
-    if (viewNum >= requirementNum) changeBackgroundColor(card, "hsl(10,50%,50%)");
-    else changeBackgroundColor(card, "");
+    if (viewNum >= requirementNum) return true;
+    return false;
 }
 
 /** Helper function to change background colors */
-function changeBackgroundColor(card, color) {card.style.backgroundColor = color;}
+function changeBackgroundColor(card, color, borderRadius) {card.style.backgroundColor = color; card.style.borderRadius = borderRadius}
 
 /**
  * covert strings like "5K views" to numbers like "5000".

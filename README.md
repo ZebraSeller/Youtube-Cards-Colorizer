@@ -1,2 +1,2 @@
 # Youtube-Cards-Colorizer
- Colorizes youtube video cards based on criterias
+ A Chrome Extension that colorizes youtube video cards based on criterias
