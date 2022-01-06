@@ -1,0 +1,28 @@
+{
+    "name": "Youtube Front Page Colorizer",
+    "description": "Colorizes Youtube Front Page Elements",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "icons": {
+
+    },
+    "background": {
+        "scripts": ["./background.js"]
+    },
+    "options_page": "./options.html",
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "tabs",
+        "*://*.youtube.com/*"
+    ],
+    "content_scripts": [
+        {
+          "matches": ["*://*.youtube.com/*"],
+          "js": [
+            "./frontPageColorizer.js"
+          ]
+        }
+    ]
+}
