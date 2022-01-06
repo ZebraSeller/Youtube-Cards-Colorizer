@@ -1,26 +1,24 @@
 console.log("FrontPageColorizer Injected");
 var cards; //array storing all front page cards.
 var numCards, currNum;
-var highlightColor = "red";
-chrome.runtime.onMessage.addListener(
-    function(msg, sender, sendResponse) {
-        switch(msg.type) {
-            case "sendingColor":
-                highlightColor = msg.content;
-            break;
-        }
-    }
-);
+var highlightColor =  "#64a6ed";
+chrome.storage.sync.get({"color" : "#64a6ed"}, function(data) {highlightColor = data.color;});
+var viewLimit = "10M";
+chrome.storage.sync.get({"view" : "10M"}, function(data) {viewLimit  = data.view;});
 
 const target = document.getElementById("contents");
 const config = { attributes: true, childList: true, subtree: true };
 const updateCards = function() {
     cards = target.getElementsByClassName("style-scope ytd-rich-item-renderer");
-    console.log("Cards updated, new length " + cards.length);
     numCards = cards.length;
-    if (numCards != currNum) {// when the number of videos in the feed changes.
+    chrome.storage.sync.get({color : "#64a6ed", view : "10M"}, function(data) {
+        highlightColor = data.color;
+        viewLimit  = data.view;
+    });
+    if (numCards != currNum) {// when the number of videos in the feed changes. This is to improve performance.
         for (const card of cards) {
-            if(checkViews(card, "900K views")) changeBackgroundColor(card, "hsl(10,50%,50%)", "8px");
+            console.log(viewLimit);
+            if(checkViews(card, viewLimit)) changeBackgroundColor(card, highlightColor, "8px");
             else changeBackgroundColor(card, "", "");
         }
         currNum = numCards;
@@ -44,7 +42,7 @@ function checkViews(card, requiredViews) {
     
     var viewNum = viewStringToNumber(viewSpans[0].innerHTML);
     var requirementNum = viewStringToNumber(requiredViews);
-    console.log("this video has " + viewNum + " views, required views is " + requirementNum);
+    //console.log("this video has " + viewNum + " views, required views is " + requirementNum);.
     
     if (viewNum >= requirementNum) return true;
     return false;

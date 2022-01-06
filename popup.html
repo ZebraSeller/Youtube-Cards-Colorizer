@@ -8,9 +8,14 @@
 </head>
 <body>
     <script src="./popup.js"></script>
-    <button id="authenticate">authorize and load</button>
-    <button id="saveColor">Save Color</button>
-    <button id="reset">Reset</button>
+    <!-- <button id="authenticate">authorize and load</button> -->
+    <label for="colorPicker">Highlight Color:</label>
     <input id="colorPicker" type="color" />
+    <br/>
+    <label for="viewsInput">Minimum Views:</label>
+    <input id="viewsInput" type="text" placeholder="10M"/>
+    <button id="saveColor">Save Settings</button>
+    <p>New Settings will be used when the page updates</p>
+    <button id="reset">Reset</button>
 </body>
 </html>
