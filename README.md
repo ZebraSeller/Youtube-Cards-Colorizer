@@ -3,7 +3,7 @@
  Works on youtube front page (recommendation feed), search results, and watching page.
 
 ## How to Use:
-![Alt text](/popup-screenshot.png?raw=true "Popup Screenshot")
+![Alt text](/assets/popup-screenshot.png?raw=true "Popup Screenshot")
 - Highlight Color: the color the videos will be highlighted in.
 
 - Minimum Views: Videos must have more views than this amount to be highlighted. A string in the formats "2B", "1M", "500K", "2340664" should be used.
