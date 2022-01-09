@@ -10,12 +10,14 @@
     <script src="./popup.js"></script>
     <!-- <button id="authenticate">authorize and load</button> -->
     <label for="colorPicker">Highlight Color:</label>
-    <input id="colorPicker" type="color" />
+    <input id="colorPicker" type="color" placeholder="#bf4040"/>
     <br/>
     <label for="viewsInput">Minimum Views:</label>
-    <input id="viewsInput" type="text" placeholder="10M"/>
+    <input id="viewsInput" type="text" placeholder="500K"/>
+    <label for="timeInput">Maximum Age &#40;Time Uploaded&#41; :</label>
+    <input id="timeInput" type="text" placeholder="3M"/>
     <button id="saveColor">Save Settings</button>
-    <p>New Settings will be used when the page updates</p>
-    <button id="reset">Reset</button>
+    <p>New Settings will be applied when the page updates</p>
+    <button id="reset">Reset Settings</button>
 </body>
 </html>
