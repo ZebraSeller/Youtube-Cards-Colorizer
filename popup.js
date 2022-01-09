@@ -1,3 +1,7 @@
+const gitHubURL = "https://github.com/ZebraSeller/Youtube-Cards-Colorizer";
+
+
+
 /**
  * After the popup html is loaded, it will call the popUpMain() function to setup.
  */
@@ -16,6 +20,7 @@ function popUpMain() {
     });
     document.getElementById('saveColor').addEventListener('click', function() {onClickSave();});
     document.getElementById('reset').addEventListener('click', function() {reset();});
+    document.getElementById('about').addEventListener('click', function() {openNewTab(gitHubURL);});
 }
 
 /**
@@ -39,5 +44,7 @@ function reset() {
     document.getElementById('timeInput').value = "3M";
 }
 
-
+function openNewTab(url) {
+    window.open(url, "_blank").focus();
+}
 
