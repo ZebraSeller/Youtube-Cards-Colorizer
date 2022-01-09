@@ -1,7 +1,7 @@
 # Youtube-Cards-Colorizer
  A Chrome Extension that colorizes youtube video cards based on user-set criterias
  Works on youtube front page (recommendation feed), search results, and watching page.
-
+![Alt text](/assets/demo-screenshot.png?raw=true "Demo Screenshot")
 ## How to Use:
 ![Alt text](/assets/popup-screenshot.png?raw=true "Popup Screenshot")
 - Highlight Color: the color the videos will be highlighted in.
@@ -16,4 +16,4 @@
 
 - About and Help: This button leads to the github page of this extension.
 
- 
+
